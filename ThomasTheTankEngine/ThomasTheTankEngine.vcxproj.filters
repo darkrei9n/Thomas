@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{df80dade-d3fb-4a74-81af-773655ecb3e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GenericPlatform">
+      <UniqueIdentifier>{9ed9eafb-ce04-480c-b689-4f16d6d4c510}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GenericPlatform\Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Core\GenericPlatform\Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="CoreRenderer">
+      <UniqueIdentifier>{575f42a1-640f-48a9-b9db-be59c2484869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CoreRenderer\DirectX12">
+      <UniqueIdentifier>{1baf7799-3933-4267-8062-231e67cc9de9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CoreRenderer\DirectX12\Source Files">
+      <UniqueIdentifier>{cf52a8e6-7179-43c1-80df-a0aab4f9b8c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CoreRenderer\DirectX12\Header FIles">
+      <UniqueIdentifier>{ff0c6d84-af74-4694-86c0-0ca48643cc13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExceptionHandler">
+      <UniqueIdentifier>{eeccc431-2ab8-45ac-ba4d-9f12d14ce8b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExceptionHandler\Header FIle">
+      <UniqueIdentifier>{93f66a7e-dce8-4dd9-a677-07cc2802f6fa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Core\GenericPlatform\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Core\GenericPlatform\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Core\GenericPlatform\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ThomasTheTankEngine.h">
+      <Filter>Core\GenericPlatform\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DX12Render.h">
+      <Filter>CoreRenderer\DirectX12\Header FIles</Filter>
+    </ClInclude>
+    <ClInclude Include="ExceptionHandler.h">
+      <Filter>ExceptionHandler\Header FIle</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Core\GenericPlatform\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ThomasTheTankEngine.cpp">
+      <Filter>Core\GenericPlatform\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DX12Render.cpp">
+      <Filter>CoreRenderer\DirectX12\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ThomasTheTankEngine.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ThomasTheTankEngine.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
