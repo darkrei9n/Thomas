@@ -1,11 +1,7 @@
 // ThomasTheTankEngine.cpp : Defines the entry point for the application.
 //
 
-#include "stdafx.h"
 #include "ThomasTheTankEngine.h"
-#include "DX12Render.h"
-
-using namespace WindowsApplication;
 
 #define MAX_LOADSTRING 100
 
@@ -13,6 +9,11 @@ using namespace WindowsApplication;
 HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
+
+//I swear I didn't just add these to get the linker to stop bitching about unresolved
+HWND CWindow::hWnd = nullptr;
+int height = 0;
+int width = 0;
 
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -29,6 +30,9 @@ int CWindow::TrueMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmd
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
 	// TODO: Place code here.
+	int argc = 0;
+	LPWSTR* argv = CommandLineToArgvW(GetCommandLineW(), &argc);
+	ProcessCMDLine(argv, argc);
 
 	// Initialize global strings
 	LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -98,22 +102,38 @@ BOOL CWindow::InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // Store instance handle in our global variable
 
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+   hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+      CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
       return FALSE;
    }
    //Modified to initialize DirectX as well before showing the window
-   //TODO: Fix this stupid shit. Possibly incorporate WinMain/WndProc/etc into a class and have contain an object of DX12Render.
-
-   Render.Initialize();
+   Render.Initialize(width, height);
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
    return TRUE;
+}
+//Goes through the command line
+
+void CWindow::ProcessCMDLine(_In_reads_(argc) WCHAR* argv[], int argc)
+{
+	for (int i = 1; i < argc; ++i)
+	{
+		if (_wcsnicmp(argv[i], L"-Width", wcslen(argv[i])) == 0)
+		{
+			width = _wtoi(argv[i + 1]);
+			++i;
+		}
+		else if (_wcsnicmp(argv[i], L"-Height", wcslen(argv[i])) == 0)
+		{
+			height = _wtoi(argv[i + 1]);
+			++i;
+		}
+	}
 }
 
 //
@@ -132,10 +152,6 @@ LRESULT CALLBACK CWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
     {
     case WM_PAINT:
         {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: Add any drawing code that uses hdc here...
-            EndPaint(hWnd, &ps);
         }
         break;
     case WM_DESTROY:
@@ -145,4 +161,9 @@ LRESULT CALLBACK CWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
     return 0;
+}
+
+HWND CWindow::GethWnd()
+{
+	return hWnd;
 }
